@@ -1,6 +1,6 @@
 package andynag.tw.tennis_coding_dojo_20190327
 
-class TennisGame(player1: String, player2: String) {
+class TennisGame(val player1: String, val player2: String) {
 
     var player1Score: Int
     var player2Score: Int
@@ -16,6 +16,14 @@ class TennisGame(player1: String, player2: String) {
 
         if (isDeuce(player1Score, player2Score)) {
             return "Deuce"
+        } else if (advantage(player1Score, player2Score)) {
+            var name =
+            if (player1Score > player2Score) {
+                 player1
+            } else {
+                player2
+            }
+            return "Advantage, $name"
         } else {
             if (isSameScore(player1Score, player2Score)) {
                 return "$player1ScoreTag All"
@@ -25,12 +33,19 @@ class TennisGame(player1: String, player2: String) {
         }
     }
 
+    private fun someoneWin(score1: Int, score2: Int): Boolean {
+        var max = Math.max(score1, score2)
+        var min = Math.min(score1, score2)
+        if (max >= min + 2) {
+            return true
+        }
+        return false
+    }
+
     private fun advantage(score1: Int, score2: Int): Boolean {
         if (score1 >= 3 && score2 >= 3) {
             if (score1 == score2 +1 || score2 == score1 +1) {
                 return true
-            } else {
-                return false
             }
         }
         return false
