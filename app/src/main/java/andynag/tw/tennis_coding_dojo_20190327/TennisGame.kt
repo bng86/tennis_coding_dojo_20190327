@@ -6,7 +6,13 @@ class TennisGame(player1: String, player2: String) {
     var player2Score = 0
 
     fun getResult(): String {
-        return "Love All"
+        if (player1Score == player2Score) {
+            return "Love All"
+        } else if (player1Score == 1 && player2Score == 0) {
+            return "Fifteen/Love"
+        } else {
+            return ""
+        }
     }
 
 }
