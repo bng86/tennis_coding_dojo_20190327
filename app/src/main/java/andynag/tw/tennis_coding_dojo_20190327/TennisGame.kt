@@ -22,9 +22,13 @@ class TennisGame(player1: String, player2: String) {
             return "$player1ScoreTag/$player2ScoreTag"
         } else if (player1Score == 2 && player2Score == 0) {
             return "$player1ScoreTag/$player2ScoreTag"
-        } else {
+        } else if (player1Score == 3 && player2Score == 0) {
+            return "$player1ScoreTag/$player2ScoreTag"
+        }else {
             return ""
         }
+
+
     }
 
     private fun getScopeString(scope: Int): String {
@@ -32,6 +36,7 @@ class TennisGame(player1: String, player2: String) {
             0 -> "Love"
             1 -> "Fifteen"
             2 -> "Thirty"
+            3 -> "Forty"
             else -> ""
         }
     }
