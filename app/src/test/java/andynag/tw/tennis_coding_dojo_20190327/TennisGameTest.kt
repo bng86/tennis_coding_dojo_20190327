@@ -67,4 +67,13 @@ class TennisGameTest {
         val actual = game.getResult()
         Assert.assertEquals("Deuce", actual)
     }
+
+    @Test
+    fun test_Advantage_Bar() {
+        val game = TennisGame("player1", "Bar")
+        game.player1Score = 4
+        game.player2Score = 5
+        val actual = game.getResult()
+        Assert.assertEquals("Advantage, Bar", actual)
+    }
 }

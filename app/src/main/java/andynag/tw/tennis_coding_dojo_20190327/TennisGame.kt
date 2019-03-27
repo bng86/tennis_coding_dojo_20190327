@@ -25,6 +25,17 @@ class TennisGame(player1: String, player2: String) {
         }
     }
 
+    private fun advantage(score1: Int, score2: Int): Boolean {
+        if (score1 >= 3 && score2 >= 3) {
+            if (score1 == score2 +1 || score2 == score1 +1) {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
+
     private fun isSameScore(score1: Int, score2: Int): Boolean {
         return score1 == score2
     }
