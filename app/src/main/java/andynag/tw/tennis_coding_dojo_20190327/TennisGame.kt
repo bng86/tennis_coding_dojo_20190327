@@ -14,21 +14,24 @@ class TennisGame(player1: String, player2: String) {
         var player1ScoreTag = getScopeString(player1Score)
         var player2ScoreTag = getScopeString(player2Score)
 
-        if (player1Score == player2Score) {
-            return "$player1ScoreTag All"
-        } else if (player1Score == 1 && player2Score == 0) {
+        if (isSameScore(player1Score, player2Score)) {
+            if (player1Score >= 3 || player2Score >= 3) {
+                return "Deuce"
+            } else {
+                return "$player1ScoreTag All"
+
+            }
+        } else if (player1Score == 0 || player2Score == 0) {
             return "$player1ScoreTag/$player2ScoreTag"
-        } else if (player1Score == 0 && player2Score == 1) {
-            return "$player1ScoreTag/$player2ScoreTag"
-        } else if (player1Score == 2 && player2Score == 0) {
-            return "$player1ScoreTag/$player2ScoreTag"
-        } else if (player1Score == 3 && player2Score == 0) {
-            return "$player1ScoreTag/$player2ScoreTag"
-        }else {
+        } else {
             return ""
         }
 
 
+    }
+
+    private fun isSameScore(score1: Int, score2: Int): Boolean {
+        return score1 == score2
     }
 
     private fun getScopeString(scope: Int): String {
