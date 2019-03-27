@@ -94,4 +94,31 @@ class TennisGameTest {
         val actual = game.getResult()
         Assert.assertEquals("Foo Win", actual)
     }
+
+    @Test
+    fun test_Win_Bar() {
+        val game = TennisGame("Foo", "Bar")
+        game.player1Score = 2
+        game.player2Score = 4
+        val actual = game.getResult()
+        Assert.assertEquals("Bar Win", actual)
+    }
+
+    @Test
+    fun test_Thirty_all() {
+        val game = TennisGame("Foo", "Bar")
+        game.player1Score = 2
+        game.player2Score = 2
+        val actual = game.getResult()
+        Assert.assertEquals("Thirty All", actual)
+    }
+
+    @Test
+    fun test_Fifteen_all() {
+        val game = TennisGame("Foo", "Bar")
+        game.player1Score = 1
+        game.player2Score = 1
+        val actual = game.getResult()
+        Assert.assertEquals("Fifteen All", actual)
+    }
 }

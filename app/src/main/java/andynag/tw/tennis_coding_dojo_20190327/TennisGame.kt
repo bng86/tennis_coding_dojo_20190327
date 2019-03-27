@@ -2,45 +2,40 @@ package andynag.tw.tennis_coding_dojo_20190327
 
 class TennisGame(val player1: String, val player2: String) {
 
-    var player1Score: Int
-    var player2Score: Int
-
-    init {
-        player1Score = 0
-        player2Score = 0
-    }
+    var player1Score: Int = 0
+    var player2Score: Int = 0
 
     fun getResult(): String {
-        var player1ScoreTag = getScopeString(player1Score)
-        var player2ScoreTag = getScopeString(player2Score)
+        val player1ScoreTag = getScopeString(player1Score)
+        val player2ScoreTag = getScopeString(player2Score)
 
         if (isDeuce(player1Score, player2Score)) {
             return "Deuce"
         } else if (advantage(player1Score, player2Score)) {
-            var name = if (player1Score > player2Score) {
+            val name = if (player1Score > player2Score) {
                  player1
             } else {
                 player2
             }
             return "Advantage, $name"
-        }else if(player1Score >= 3 && player2Score >=3){
-            if(player1Score - player2Score >= 2){
-                return "$player1 Win"
+        }else if(player1Score > 3 || player2Score > 3 && someoneWin(player1Score, player2Score)){
+            return if(player1Score - player2Score >= 2){
+                "$player1 Win"
             }else{
-                return "$player2 Win"
+                "$player2 Win"
             }
         } else {
-            if (isSameScore(player1Score, player2Score)) {
-                return "$player1ScoreTag All"
+            return if (isSameScore(player1Score, player2Score)) {
+                "$player1ScoreTag All"
             } else {
-                return "$player1ScoreTag/$player2ScoreTag"
+                "$player1ScoreTag/$player2ScoreTag"
             }
         }
     }
 
     private fun someoneWin(score1: Int, score2: Int): Boolean {
-        var max = Math.max(score1, score2)
-        var min = Math.min(score1, score2)
+        val max = Math.max(score1, score2)
+        val min = Math.min(score1, score2)
         if (max >= min + 2) {
             return true
         }
@@ -71,11 +66,11 @@ class TennisGame(val player1: String, val player2: String) {
     }
     // TODO: NEXT ONE FIX
     private fun isDeuce(score1: Int, score2: Int): Boolean {
-        var isSame = isSameScore(score1, score2)
-        if (score1 >= 3 || score2 >= 3) {
-            return isSame
+        val isSame = isSameScore(score1, score2)
+        return if (score1 >= 3 || score2 >= 3) {
+            isSame
         } else {
-            return false
+            false
         }
     }
 
