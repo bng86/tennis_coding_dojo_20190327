@@ -23,7 +23,6 @@ class TennisGameTest {
         Assert.assertEquals("Fifteen/Love", actual)
     }
 
-
     @Test
     fun test_love_fifteen() {
         val game = TennisGame("player1", "player2")
@@ -52,10 +51,19 @@ class TennisGameTest {
     }
 
     @Test
-    fun test_deuce() {
+    fun test_deuce_3_3() {
         val game = TennisGame("player1", "player2")
         game.player1Score = 3
         game.player2Score = 3
+        val actual = game.getResult()
+        Assert.assertEquals("Deuce", actual)
+    }
+
+    @Test
+    fun test_deuce_4_4() {
+        val game = TennisGame("player1", "player2")
+        game.player1Score = 4
+        game.player2Score = 4
         val actual = game.getResult()
         Assert.assertEquals("Deuce", actual)
     }

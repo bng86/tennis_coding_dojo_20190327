@@ -14,20 +14,15 @@ class TennisGame(player1: String, player2: String) {
         var player1ScoreTag = getScopeString(player1Score)
         var player2ScoreTag = getScopeString(player2Score)
 
-        if (isSameScore(player1Score, player2Score)) {
-            if (player1Score >= 3 || player2Score >= 3) {
-                return "Deuce"
-            } else {
-                return "$player1ScoreTag All"
-
-            }
-        } else if (player1Score == 0 || player2Score == 0) {
-            return "$player1ScoreTag/$player2ScoreTag"
+        if (isDeuce(player1Score, player2Score)) {
+            return "Deuce"
         } else {
-            return ""
+            if (isSameScore(player1Score, player2Score)) {
+                return "$player1ScoreTag All"
+            } else {
+                return "$player1ScoreTag/$player2ScoreTag"
+            }
         }
-
-
     }
 
     private fun isSameScore(score1: Int, score2: Int): Boolean {
@@ -41,6 +36,15 @@ class TennisGame(player1: String, player2: String) {
             2 -> "Thirty"
             3 -> "Forty"
             else -> ""
+        }
+    }
+    // TODO: NEXT ONE FIX
+    private fun isDeuce(score1: Int, score2: Int): Boolean {
+        var isSame = isSameScore(score1, score2)
+        if (score1 >= 3 || score2 >= 3) {
+            return isSame
+        } else {
+            return false
         }
     }
 
